@@ -1,0 +1,47 @@
+module.exports = function(grunt) {
+
+  'use strict';
+
+  grunt.loadNpmTasks('grunt-browserify');
+
+  // Project configuration.
+  grunt.initConfig({
+
+    browserify: {
+
+      ES5: {
+        files: {
+          'dist/testComponent.js': 'testComponent.js'
+        },
+        options: {
+          transform: [['babelify', {presets: ['es2015']}]],
+          ignore: false,
+          browserifyOptions: {
+            debug: true
+          }
+        }
+      },
+
+      ES6: {
+        files: {
+          'dist/testComponent.es6.js': 'testComponent.js',
+        },
+        options: {
+          transform: [['babelify', {plugins: ['transform-es2015-modules-commonjs']}]],
+          ignore: false,
+          browserifyOptions: {
+            debug: true
+          }
+        }
+      }
+    }
+
+  });
+
+  grunt.registerTask('default', function() {
+    grunt.log.writeln('grunt commands this project supports:');
+    grunt.log.writeln('');
+    grunt.log.writeln('  grunt build');
+  });
+  grunt.registerTask('build', ['browserify:ES5', 'browserify:ES6']);
+};

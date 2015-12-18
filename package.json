@@ -8,6 +8,7 @@
   ],
   "license": "MIT",
   "dependencies": {
+    "core-component-mixins": "componentkitchen/core-component-mixins#master",
     "webcomponents.js": "^0.7.2"
   },
   "devDependencies": {
