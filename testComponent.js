@@ -16,6 +16,23 @@ export default class TestComponent extends ElementBase.compose() {
       </div>
     `;
   }
+
+  createdCallback() {
+    this.timeStamp('Entering createdCallback');
+    this.log('createdCallback');
+
+    if (super.createdCallback) {
+      super.createdCallback();
+    }
+  }
+
+  timeStamp(label) {
+    if (!console.timeStamp) {
+      return;
+    }
+
+    console.timeStamp(label);
+  }
 }
 
 document.registerElement('test-component', TestComponent);

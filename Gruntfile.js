@@ -35,13 +35,26 @@ module.exports = function(grunt) {
         }
       }
     }
-
   });
 
   grunt.registerTask('default', function() {
     grunt.log.writeln('grunt commands this project supports:');
     grunt.log.writeln('');
     grunt.log.writeln('  grunt build');
+    grunt.log.writeln('  grunt watch');
   });
+
   grunt.registerTask('build', ['browserify:ES5', 'browserify:ES6']);
+  grunt.registerTask('watch', function() {
+    watchHelper(grunt, 'ES5');
+  });
+  grunt.registerTask('watch-es6', function() {
+    watchHelper(grunt, 'ES6');
+  });
 };
+
+function watchHelper(grunt, version) {
+  grunt.config.set('browserify.' + version + '.options.watch', true);
+  grunt.config.set('browserify.' + version + '.options.keepAlive', true);
+  grunt.task.run('browserify:' + version);
+}
