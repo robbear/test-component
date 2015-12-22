@@ -9,13 +9,16 @@
   <script>
     console.timeStamp('Running script in <head>');
     console.log('Running script in <head>');
-  </script>
 
-  <script>
     document.addEventListener('DOMContentLoaded', function(event) {
       console.timeStamp('DOMContentLoaded callback');
       console.log('DOMContentLoaded invoked');
     });
+
+    function onLoad(name) {
+      console.timeStamp(name);
+      console.log(`${name} load complete`);
+    }
   </script>
 </head>
 
@@ -10030,8 +10033,8 @@
   <div>Test div</div>
 
   <!-- Placing scripts at the end allow for initial placeholder rendering to occur quickly -->
-  <script src="./node_modules/webcomponents.js/webcomponents.js"></script>
-  <script src="./dist/testComponent.es6.js"></script>
+  <script src="./node_modules/webcomponents.js/webcomponents.js" onload="onLoad('webcomponents.js loaded')"></script>
+  <script src="./dist/testComponent.es6.js" onload="onLoad('testComponent.es6.js loaded')"></script>
 </body>
 </html>
 
