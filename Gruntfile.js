@@ -42,6 +42,7 @@ module.exports = function(grunt) {
     grunt.log.writeln('');
     grunt.log.writeln('  grunt build');
     grunt.log.writeln('  grunt watch');
+    grunt.log.writeln('  grunt watch-es6');
   });
 
   grunt.registerTask('build', ['browserify:ES5', 'browserify:ES6']);

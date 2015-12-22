@@ -26,6 +26,33 @@ export default class TestComponent extends ElementBase.compose() {
     }
   }
 
+  attachedCallback() {
+    this.timeStamp('Entering attachedCallback');
+    this.log('attachedCallback');
+
+    if (super.attachedCallback) {
+      super.attachedCallback();
+    }
+  }
+
+  detachedCallback() {
+    this.timeStamp('Entering detachedCallback');
+    this.log('detachedCallback');
+
+    if (super.detachedCallback) {
+      super.detachedCallback();
+    }
+  }
+
+  attributeChangedCallback(name, oldVal, newVal) {
+    this.timeStamp('Entering attributeChangedCallback');
+    this.log(`attributeChangedCallback: name=${name} oldVal=${oldVal} newVal=${newVal}`);
+
+    if (super.attributChangedCallback) {
+      super.attributeChangedCallback(name, oldVal, newVal);
+    }
+  }
+
   timeStamp(label) {
     if (!console.timeStamp) {
       return;
